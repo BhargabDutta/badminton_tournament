@@ -4,23 +4,33 @@ import TeamInput from './components/TeamInput';
 import MatchList from './components/MatchList';
 import Scoreboard from './components/Scoreboard';
 
-function App() {
+export default function App() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
 
-  const generateMatches = (teams: Team[]) => {
-    // Shuffle teams randomly
-    const shuffledTeams = [...teams].sort(() => Math.random() - 0.5);
+  const generateMatches = (teams: Team[], isBestOfThree: boolean) => {
+    // For best of three, keep teams in original order
+    // For single games, shuffle teams
+    const orderedTeams = isBestOfThree 
+      ? teams 
+      : [...teams].sort(() => Math.random() - 0.5);
     
     const newMatches: Match[] = [];
-    for (let i = 0; i < shuffledTeams.length - 1; i += 2) {
+    for (let i = 0; i < orderedTeams.length - 1; i += 2) {
       newMatches.push({
         id: crypto.randomUUID(),
-        team1: shuffledTeams[i],
-        team2: shuffledTeams[i + 1],
+        team1: orderedTeams[i],
+        team2: orderedTeams[i + 1],
         score1: 0,
         score2: 0,
-        isComplete: false
+        isComplete: false,
+        isBestOfThree,
+        games: isBestOfThree ? [
+          { score1: 0, score2: 0, isComplete: false },
+          { score1: 0, score2: 0, isComplete: false },
+          { score1: 0, score2: 0, isComplete: false }
+        ] : undefined,
+        currentGame: isBestOfThree ? 0 : undefined
       });
     }
     
@@ -57,5 +67,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

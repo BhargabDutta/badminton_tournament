@@ -3,11 +3,12 @@ import { Trophy } from 'lucide-react';
 import { Team } from '../types';
 
 interface TeamInputProps {
-  onTeamsSubmit: (teams: Team[]) => void;
+  onTeamsSubmit: (teams: Team[], isBestOfThree: boolean) => void;
 }
 
 export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
   const [teamNames, setTeamNames] = useState<string>('');
+  const [matchType, setMatchType] = useState<'single' | 'bestOfThree'>('single');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -24,7 +25,7 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
       return;
     }
     
-    onTeamsSubmit(names);
+    onTeamsSubmit(names, matchType === 'bestOfThree');
   };
 
   return (
@@ -34,6 +35,35 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
         <h2 className="text-2xl font-bold text-gray-800">Enter Team Names</h2>
       </div>
       <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Match Type
+          </label>
+          <div className="flex gap-4">
+            <label className="flex items-center">
+              <input
+                type="radio"
+                name="matchType"
+                value="single"
+                checked={matchType === 'single'}
+                onChange={(e) => setMatchType(e.target.value as 'single')}
+                className="mr-2"
+              />
+              Single Game
+            </label>
+            <label className="flex items-center">
+              <input
+                type="radio"
+                name="matchType"
+                value="bestOfThree"
+                checked={matchType === 'bestOfThree'}
+                onChange={(e) => setMatchType(e.target.value as 'bestOfThree')}
+                className="mr-2"
+              />
+              Best of Three
+            </label>
+          </div>
+        </div>
         <textarea
           className="w-full h-48 p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
           placeholder="Enter team names (one per line)"

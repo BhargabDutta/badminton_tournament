@@ -28,7 +28,10 @@ export default function MatchList({ matches, onMatchClick }: MatchListProps) {
             <div className="flex justify-between items-center mb-4">
               <div className="flex items-center">
                 <Shield className="w-5 h-5 text-blue-500 mr-2" />
-                <span className="font-semibold">Match #{match.id.slice(0, 4)}</span>
+                <span className="font-semibold">
+                  Match #{match.id.slice(0, 4)}
+                  {match.isBestOfThree && ' (Best of 3)'}
+                </span>
               </div>
               {match.isComplete && (
                 <span className="text-sm text-green-600 font-medium">
@@ -41,15 +44,20 @@ export default function MatchList({ matches, onMatchClick }: MatchListProps) {
                 <span className={match.winner?.id === match.team1.id ? 'font-bold text-green-600' : ''}>
                   {match.team1.name}
                 </span>
-                <span className="font-mono">{match.score1}</span>
+                <span className="font-mono">{match.isBestOfThree ? match.score1 : match.score1}</span>
               </div>
               <div className="flex justify-between items-center">
                 <span className={match.winner?.id === match.team2.id ? 'font-bold text-green-600' : ''}>
                   {match.team2.name}
                 </span>
-                <span className="font-mono">{match.score2}</span>
+                <span className="font-mono">{match.isBestOfThree ? match.score2 : match.score2}</span>
               </div>
             </div>
+            {match.isBestOfThree && !match.isComplete && match.currentGame !== undefined && (
+              <div className="mt-2 text-sm text-gray-600">
+                Playing Game {match.currentGame + 1}
+              </div>
+            )}
           </div>
         ))}
       </div>

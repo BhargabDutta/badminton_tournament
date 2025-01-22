@@ -3,6 +3,14 @@ export interface Team {
   name: string;
 }
 
+export interface Game {
+  score1: number;
+  score2: number;
+  winner?: Team;
+  loser?: Team;
+  isComplete: boolean;
+}
+
 export interface Match {
   id: string;
   team1: Team;
@@ -12,4 +20,7 @@ export interface Match {
   score1: number;
   score2: number;
   isComplete: boolean;
+  isBestOfThree?: boolean;
+  games?: Game[];
+  currentGame?: number;
 }
