@@ -29,17 +29,21 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
-      <div className="flex items-center justify-center mb-6">
-        <Trophy className="w-8 h-8 text-yellow-500 mr-2" />
-        <h2 className="text-2xl font-bold text-gray-800">Enter Team Names</h2>
+    <div className="max-w-md mx-auto p-6 backdrop-blur-sm bg-black/30 rounded-lg shadow-lg">
+      <div className="flex items-center justify-center space-x-2 mb-6">
+        <a href="https://www.beakball.com/about" target='_blank'>
+      <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={50} width={50}/></a>
+
+        <h2 className="text-2xl font-bold text-white">Enter Team Names</h2>
+        <Trophy className="w-10 h-10 text-yellow-500 mr-2" />
+
       </div>
       <form onSubmit={handleSubmit}>
         <div className="mb-4">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Match Type
           </label>
-          <div className="space-y-2">
+          <div className="space-y-2 text-yellow-500">
             <label className="flex items-center">
               <input
                 type="radio"
@@ -76,7 +80,7 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
           </div>
         </div>
         <div className="mb-2">
-          <label className="block text-sm font-medium text-gray-700 mb-2">
+          <label className="block text-sm font-medium text-white mb-2">
             Team Names
           </label>
           <textarea
@@ -86,7 +90,7 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
             onChange={(e) => setTeamNames(e.target.value)}
           />
         </div>
-        <p className="text-sm text-gray-600 mb-4">
+        <p className="text-sm text-yellow-500 mb-4">
           Teams will be paired in the order they are entered for sequential matches.
         </p>
         <button

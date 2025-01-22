@@ -3,6 +3,10 @@ import { Team, Match } from './types';
 import TeamInput from './components/TeamInput';
 import MatchList from './components/MatchList';
 import Scoreboard from './components/Scoreboard';
+import landscape1 from "./images/landscape1.jpg";
+// import landscape2 from "./images/landscape2.jpg";
+// import portrait1 from "./images/portrait1.jpg";
+// import portrait2 from "./images/portrait2.jpg";
 
 export default function App() {
   const [matches, setMatches] = useState<Match[]>([]);
@@ -45,7 +49,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-8">
+    <div className="min-h-screen bg-cover bg-center py-8" style={{ backgroundImage: `url(${landscape1})` }}>
       {!matches.length && (
         <TeamInput onTeamsSubmit={generateMatches} />
       )}

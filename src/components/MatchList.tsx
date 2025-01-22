@@ -9,10 +9,14 @@ interface MatchListProps {
 
 export default function MatchList({ matches, onMatchClick }: MatchListProps) {
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="flex items-center justify-center mb-8">
-        <Trophy className="w-8 h-8 text-yellow-500 mr-2" />
-        <h2 className="text-2xl font-bold text-gray-800">Tournament Matches</h2>
+    <div className="max-w-4xl mx-auto p-6 backdrop-blur-sm bg-black/30">
+      <div className="flex items-center justify-center space-x-2 mb-8">
+      <a href="https://www.beakball.com/about" target='_blank'>
+      <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={50} width={50}/>
+</a>
+        
+        <h2 className="text-2xl font-bold text-white">Tournament Matches</h2>
+        <Trophy className="w-10 h-10 text-yellow-500 mr-2" />
       </div>
       <div className="grid gap-4 md:grid-cols-2">
         {matches.map((match) => (

@@ -25,7 +25,7 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
   }, [match.currentGame, match.games, match.isBestOfThree, match.score1, match.score2]);
 
   const isDeuce = score1 >= 20 && score2 >= 20;
-  const hasWinner = isDeuce 
+  const hasWinner = isDeuce
     ? Math.abs(score1 - score2) >= 2
     : score1 >= 21 || score2 >= 21;
 
@@ -36,7 +36,7 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
     const newScore2 = team === 2 ? score2 + 1 : score2;
 
     const newIsDeuce = newScore1 >= 20 && newScore2 >= 20;
-    const newHasWinner = newIsDeuce 
+    const newHasWinner = newIsDeuce
       ? Math.abs(newScore1 - newScore2) >= 2
       : newScore1 >= 21 || newScore2 >= 21;
 
@@ -77,11 +77,11 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
       // Single game match
       setScore1(newScore1);
       setScore2(newScore2);
-      
+
       if (newHasWinner) {
         const winner = newScore1 > newScore2 ? match.team1 : match.team2;
         const loser = newScore1 > newScore2 ? match.team2 : match.team1;
-        
+
         onScoreUpdate({
           ...match,
           score1: newScore1,
@@ -108,16 +108,20 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
     <div className="max-w-2xl mx-auto p-6">
       <button
         onClick={onBack}
-        className="flex items-center text-gray-600 hover:text-gray-800 mb-8"
+        className="flex items-center text-white hover:text-gray-50 mb-8"
       >
         <ArrowLeft className="w-5 h-5 mr-2" />
         Back to Matches
       </button>
 
-      <div className="bg-white rounded-lg shadow-lg p-8">
-        <div className="flex items-center justify-center mb-8">
-          <Trophy className="w-8 h-8 text-yellow-500 mr-2" />
-          <h2 className="text-2xl font-bold text-gray-800">
+      <div className="backdrop-blur-sm bg-white/50 rounded-lg shadow-lg p-8">
+        <div className="flex items-center justify-center space-x-2 mb-8">
+          <a href="https://www.beakball.com/about" target='_blank'>
+            <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={50} width={50} /></a>
+
+
+          <h2 className="text-2xl font-bold text-black">
+            {/* <Trophy className="w-10 h-10 text-yellow-500 mr-2" /> */}
             {match.isBestOfThree ? 'Best of Three' : 'Single Game'} Match
           </h2>
         </div>
