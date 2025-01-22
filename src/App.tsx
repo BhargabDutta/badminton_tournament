@@ -8,12 +8,12 @@ export default function App() {
   const [matches, setMatches] = useState<Match[]>([]);
   const [selectedMatch, setSelectedMatch] = useState<Match | null>(null);
 
-  const generateMatches = (teams: Team[], isBestOfThree: boolean) => {
-    // For best of three, keep teams in original order
-    // For single games, shuffle teams
-    const orderedTeams = isBestOfThree 
-      ? teams 
-      : [...teams].sort(() => Math.random() - 0.5);
+  const generateMatches = (teams: Team[], matchType: 'random' | 'sequential' | 'bestOfThree') => {
+    // For best of three or sequential, keep teams in original order
+    // For random single games, shuffle teams
+    const orderedTeams = matchType === 'random'
+      ? [...teams].sort(() => Math.random() - 0.5)
+      : teams;
     
     const newMatches: Match[] = [];
     for (let i = 0; i < orderedTeams.length - 1; i += 2) {
@@ -24,13 +24,13 @@ export default function App() {
         score1: 0,
         score2: 0,
         isComplete: false,
-        isBestOfThree,
-        games: isBestOfThree ? [
+        isBestOfThree: matchType === 'bestOfThree',
+        games: matchType === 'bestOfThree' ? [
           { score1: 0, score2: 0, isComplete: false },
           { score1: 0, score2: 0, isComplete: false },
           { score1: 0, score2: 0, isComplete: false }
         ] : undefined,
-        currentGame: isBestOfThree ? 0 : undefined
+        currentGame: matchType === 'bestOfThree' ? 0 : undefined
       });
     }
     
