@@ -105,59 +105,59 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
     : null;
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto p-10">
       <button
         onClick={onBack}
-        className="flex items-center text-white hover:text-gray-50 mb-8"
+        className="flex items-center text-white hover:text-gray-50 mb-12"
       >
-        <ArrowLeft className="w-5 h-5 mr-2" />
+        <ArrowLeft className="w-7 h-7 mr-4" />
         Back to Matches
       </button>
+      <img src="/src/images/arena.png" alt="" height={100} width={100} style={{background:"white", borderRadius:"10px", margin:"auto", position:"relative", left:"0",right:"0", bottom:"10px"}}/>
 
-      <div className="backdrop-blur-sm bg-white/50 rounded-lg shadow-lg p-8">
-        <div className="flex items-center justify-center space-x-2 mb-8">
+      <div className="backdrop-blur-sm bg-white rounded-lg shadow-lg p-12 w-full h-auto">
+        <div className="flex items-center justify-center space-x-4 mb-12">
           <a href="https://www.beakball.com/about" target='_blank'>
-            <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={50} width={50} /></a>
+            <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={70} width={70} />
+          </a>
 
-
-          <h2 className="text-2xl font-bold text-black">
-            {/* <Trophy className="w-10 h-10 text-yellow-500 mr-2" /> */}
+          <h2 className="text-4xl font-bold text-black">
             {match.isBestOfThree ? 'Best of Three' : 'Single Game'} Match
           </h2>
         </div>
 
         {match.isBestOfThree && (
-          <div className="text-center mb-6">
-            <div className="text-lg font-semibold mb-2">Match Score</div>
-            <div className="flex justify-center items-center gap-4 text-xl">
+          <div className="text-center mb-10">
+            <div className="text-2xl font-semibold mb-5">Match Score</div>
+            <div className="flex justify-center items-center gap-6 text-3xl">
               <span>{match.team1.name}</span>
               <span className="font-mono">{match.score1} - {match.score2}</span>
               <span>{match.team2.name}</span>
             </div>
-            <div className="mt-2 text-gray-600">
+            <div className="mt-4 text-gray-600">
               Game {(match.currentGame || 0) + 1} of 3
             </div>
           </div>
         )}
 
         {isDeuce && (
-          <div className="text-center mb-6 bg-yellow-50 p-3 rounded-lg text-yellow-800">
+          <div className="text-center mb-10 bg-yellow-50 p-5 rounded-lg text-yellow-800">
             Deuce! Win by 2 points needed
           </div>
         )}
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {[
             { team: match.team1, score: score1, updateFn: () => updateScore(1) },
             { team: match.team2, score: score2, updateFn: () => updateScore(2) },
           ].map(({ team, score, updateFn }) => (
             <div key={team.id} className="text-center">
-              <h3 className="text-xl font-semibold mb-4">{team.name}</h3>
-              <div className="text-4xl font-bold mb-4">{score}</div>
+              <h3 className="text-2xl font-semibold mb-6">{team.name}</h3>
+              <div className="text-6xl font-bold mb-6">{score}</div>
               <button
                 onClick={updateFn}
                 disabled={match.isComplete}
-                className="bg-blue-600 text-white py-3 px-6 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="bg-blue-600 text-white py-5 px-10 rounded-lg hover:bg-blue-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 +1 Point
               </button>
@@ -166,8 +166,8 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
         </div>
 
         {match.isComplete && (
-          <div className="mt-8 text-center">
-            <div className="text-2xl font-bold text-green-600">
+          <div className="mt-12 text-center">
+            <div className="text-4xl font-bold text-green-600">
               {match.winner?.name} Wins{match.isBestOfThree ? ' the Match!' : '!'}
             </div>
             {match.isBestOfThree ? (
@@ -183,11 +183,11 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
         )}
 
         {match.isBestOfThree && match.games && (
-          <div className="mt-8 border-t pt-4">
-            <h3 className="text-lg font-semibold mb-3 text-center">Game History</h3>
-            <div className="space-y-2">
+          <div className="mt-12 border-t pt-6">
+            <h3 className="text-2xl font-semibold mb-5 text-center">Game History</h3>
+            <div className="space-y-4">
               {match.games.map((game, index) => (
-                <div key={index} className="flex justify-between items-center px-4 py-2 bg-gray-50 rounded">
+                <div key={index} className="flex justify-between items-center px-8 py-4 bg-gray-50 rounded">
                   <span className="font-medium">Game {index + 1}</span>
                   <span className="font-mono">
                     {game.score1} - {game.score2}

@@ -30,6 +30,7 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
 
   return (
     <div className="max-w-md mx-auto p-6 backdrop-blur-sm bg-black/30 rounded-lg shadow-lg">
+      <img src="/src/images/arena.png" alt="" height={100} width={100} style={{background:"white", borderRadius:"10px", margin:"auto", position:"relative", left:"0",right:"0"}}/>
       <div className="flex items-center justify-center space-x-2 mb-6">
         <a href="https://www.beakball.com/about" target='_blank'>
       <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={50} width={50}/></a>
