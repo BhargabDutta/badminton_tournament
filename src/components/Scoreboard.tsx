@@ -105,7 +105,7 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
     : null;
 
   return (
-    <div className="max-w-2xl mx-auto p-10">
+    <div className="w-[90%] mx-auto p-10"> {/* Set the width to 90% */}
       <button
         onClick={onBack}
         className="flex items-center text-white hover:text-gray-50 mb-12"
