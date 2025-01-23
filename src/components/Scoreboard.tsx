@@ -113,16 +113,11 @@ export default function Scoreboard({ match, onScoreUpdate, onBack }: ScoreboardP
         <ArrowLeft className="w-7 h-7 mr-4" />
         Back to Matches
       </button>
-      <img src="/src/images/arena.png" alt="" height={100} width={100} style={{background:"white", borderRadius:"10px", margin:"auto", position:"relative", left:"0",right:"0", bottom:"10px"}}/>
-
       <div className="backdrop-blur-sm bg-white rounded-lg shadow-lg p-12 w-full h-auto">
         <div className="flex items-center justify-center space-x-4 mb-12">
-          <a href="https://www.beakball.com/about" target='_blank'>
-            <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={70} width={70} />
-          </a>
 
           <h2 className="text-4xl font-bold text-black">
-            {match.isBestOfThree ? 'Best of Three' : 'Single Game'} Match
+            {match.isBestOfThree ? 'Best of Three' : 'Knockout Game'} Match
           </h2>
         </div>
 

@@ -50,6 +50,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-cover bg-center py-8" style={{ backgroundImage: `url(${landscape1})` }}>
+         <a href="https://www.beakball.com/about" target='_blank'>
+            <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={70} width={70} style={{paddingLeft:"10px" }}/>
+          </a>
       {!matches.length && (
         <TeamInput onTeamsSubmit={generateMatches} />
       )}

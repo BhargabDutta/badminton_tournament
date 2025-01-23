@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Trophy } from 'lucide-react';
 import { Team } from '../types';
-
+import arena from "../images/arena.png"
 interface TeamInputProps {
   onTeamsSubmit: (teams: Team[], matchType: 'random' | 'sequential' | 'bestOfThree') => void;
 }
@@ -29,14 +29,13 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
   };
 
   return (
+    <>
+     <img src={arena} alt="" height={100} width={200} style={{background:"white", borderRadius:"10px", margin:"auto", position:"absolute", left:"0",right:"0",zIndex:"5", top:"10px"}}/>
     <div className="max-w-md mx-auto p-6 backdrop-blur-sm bg-black/30 rounded-lg shadow-lg">
-      <img src="/src/images/arena.png" alt="" height={100} width={100} style={{background:"white", borderRadius:"10px", margin:"auto", position:"relative", left:"0",right:"0"}}/>
       <div className="flex items-center justify-center space-x-2 mb-6">
-        <a href="https://www.beakball.com/about" target='_blank'>
-      <img src="https://www.beakball.com/assets/Logo-CjjAgmgS.webp" alt="" height={50} width={50}/></a>
+      <Trophy className="w-10 h-10 text-yellow-500 mr-2" />
 
         <h2 className="text-2xl font-bold text-white">Enter Team Names</h2>
-        <Trophy className="w-10 h-10 text-yellow-500 mr-2" />
 
       </div>
       <form onSubmit={handleSubmit}>
@@ -54,7 +53,7 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
                 onChange={(e) => setMatchType(e.target.value as 'random')}
                 className="mr-2"
               />
-              Single Game (Random Order)
+              Knockout (Random)
             </label>
             <label className="flex items-center">
               <input
@@ -65,7 +64,7 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
                 onChange={(e) => setMatchType(e.target.value as 'sequential')}
                 className="mr-2"
               />
-              Single Game (Sequential Order)
+              Knockout (Sequential)
             </label>
             <label className="flex items-center">
               <input
@@ -76,7 +75,7 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
                 onChange={(e) => setMatchType(e.target.value as 'bestOfThree')}
                 className="mr-2"
               />
-              Best of Three (Sequential Order)
+              Best of Three
             </label>
           </div>
         </div>
@@ -102,5 +101,6 @@ export default function TeamInput({ onTeamsSubmit }: TeamInputProps) {
         </button>
       </form>
     </div>
+    </>
   );
 }
